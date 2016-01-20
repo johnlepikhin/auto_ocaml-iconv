@@ -14,7 +14,7 @@ Library iconv
   Install: true
   BuildDepends: bytes
   Modules: Iconv
-  CSources: iconv_stubs.c
+  CSources: iconv_stubs.c, iconv.h, win_iconv.c
 
 Executable test
   Path: tests
