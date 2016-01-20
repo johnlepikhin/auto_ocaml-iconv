@@ -1,1 +1,1 @@
-# auto_ocaml-iconv
+# Iconv bindings for Ocaml
