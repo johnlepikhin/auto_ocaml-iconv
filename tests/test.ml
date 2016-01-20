@@ -3,4 +3,4 @@ open Iconv
 
 let () =
 	print_string "'test' in russian cp1251 charset: ";
-	convert "utf-8" "cp1251" "тест" |> print_endline
+	convert ~src:"utf-8" ~dst:"cp1251" "тест" |> print_endline
