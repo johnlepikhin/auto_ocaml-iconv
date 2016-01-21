@@ -7,7 +7,7 @@ BuildTools: ocamlbuild
 Plugins: META (0.4), DevFiles (0.4)
 Synopsis: ocaml-iconv
 Description:
-  OCaml-Iocnv is an OCaml binding to libiconv.
+  OCaml-Iconv is an OCaml binding to libiconv.
 
 Library iconv
   Path: src
