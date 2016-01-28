@@ -11,10 +11,6 @@
 #include <caml/memory.h>
 #include <caml/alloc.h>
 
-void raise_error (char *msg) {
-        caml_raise_with_string (*caml_named_value ("iconv_exn"), msg);
-}
-
 CAMLprim value
 stub_iconv_convert (value ic, value oc, value input) {
         CAMLparam3 (ic, oc, input);
@@ -29,7 +25,7 @@ stub_iconv_convert (value ic, value oc, value input) {
 
         r_output = (char *)malloc (outputsz);
         if (!r_output) {
-                raise_error ("cannot allocate memory for iconv()");
+                caml_failwith ("cannot allocate memory for iconv()");
         }
         
         r_output_start = r_output;
@@ -38,13 +34,13 @@ stub_iconv_convert (value ic, value oc, value input) {
         
         if (cd == (iconv_t)-1) {
                 free(r_output_start);
-                raise_error ("iconv_open() failed");
+                caml_failwith ("iconv_open() failed");
         } else {
                 int rc = iconv(cd, (const char **)&r_input, &inputsz, &r_output, &outputleft);
                 iconv_close(cd);
                 if (rc == -1) {
                         free(r_output_start);
-                        raise_error ("iconv() failed");
+                        caml_failwith ("iconv() failed");
                 } else {
                         size_t outputbytes = outputsz - outputleft;
 
